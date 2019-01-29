@@ -32,7 +32,7 @@ score.maxScore=5
 #   no_score : the widget will not be used to score
 #   zero_score : the widget score will be 0
 #   valuePercent : specify the value to set in scoreValue param (Default)
-score.criteria.noWidgetFound.scoreType=zero_score
+score.criteria.noWidgetFound.scoreType=no_score
 # When scoreType is valuePercent we need to define the value for score
 score.criteria.noWidgetFound.scoreValue=0
 
@@ -40,21 +40,21 @@ score.criteria.noWidgetFound.scoreValue=0
 #   no_score : the value will not be used to score
 #   zero_score : the score value will be 0
 #   valuePercent : specify the value to set in scoreValue param (Default)
-score.criteria.noDataFound.scoreType=zero_score
+score.criteria.noDataFound.scoreType=no_score
 # When scoreType is valuePercent we need to define the value for score
 score.criteria.noDataFound.scoreValue=0
 
 
 # Score settings for build widget
 # Number of days to calculate score
-score.buildWidget.numberOfDays=14
+score.buildWidget.numberOfDays=7
 # Weight for the widget
 score.buildWidget.weight=25
 # If widget is disabled it will not be used for calculating score
 score.buildWidget.disabled=false
 
 # Criteria properties, these will override the default criteria properties
-score.buildWidget.criteria.noWidgetFound.scoreType=zero_score
+score.buildWidget.criteria.noWidgetFound.scoreType=no_score
 score.buildWidget.criteria.noWidgetFound.scoreValue=0
 # Property to propagate score if condition is met
 #   no : do not propagate score
@@ -89,7 +89,7 @@ score.buildWidget.criteria.dataRangeThresholds[0].score.scoreValue=0
 score.buildWidget.criteria.dataRangeThresholds[0].score.propagate=no
 
 # we can set the last n number of days to check for threshold (Not Mandatory)
-score.buildWidget.criteria.dataRangeThresholds[0].numDaysToCheck=7
+score.buildWidget.criteria.dataRangeThresholds[0].numDaysToCheck=3
 
 # Build duration within threshold score settings
 score.buildWidget.duration.buildDurationThresholdInMillis=300000
@@ -104,11 +104,11 @@ score.buildWidget.status.disabled=false
 score.qualityWidget.weight=25
 score.qualityWidget.disabled=false
 
-score.qualityWidget.criteria.noWidgetFound.scoreType=zero_score
+score.qualityWidget.criteria.noWidgetFound.scoreType=no_score
 score.qualityWidget.criteria.noWidgetFound.scoreValue=0
 score.qualityWidget.criteria.noWidgetFound.propagate=no
 
-score.qualityWidget.criteria.noDataFound.scoreType=zero_score
+score.qualityWidget.criteria.noDataFound.scoreType=no_score
 score.qualityWidget.criteria.noDataFound.scoreValue=0
 score.qualityWidget.criteria.noDataFound.propagate=no
 
@@ -136,18 +136,18 @@ score.qualityWidget.unitTests.criteria.dataRangeThresholds[0].score.propagate=wi
 score.deployWidget.weight=25
 score.deployWidget.disabled=false
 
-score.deployWidget.criteria.noWidgetFound.scoreType=zero_score
+score.deployWidget.criteria.noWidgetFound.scoreType=no_score
 score.deployWidget.criteria.noWidgetFound.scoreValue=0
 score.deployWidget.criteria.noWidgetFound.propagate=no
 
-score.deployWidget.criteria.noDataFound.scoreType=zero_score
+score.deployWidget.criteria.noDataFound.scoreType=no_score
 score.deployWidget.criteria.noDataFound.scoreValue=0
 score.deployWidget.criteria.noDataFound.propagate=no
 
 # Deployment widget criteria settings
 score.deployWidget.deploySuccess.weight=50
 score.deployWidget.deploySuccess.disabled=false
-score.deployWidget.deploySuccess.criteria.noDataFound.scoreType=zero_score
+score.deployWidget.deploySuccess.criteria.noDataFound.scoreType=no_score
 score.deployWidget.deploySuccess.criteria.noDataFound.scoreValue=0
 score.deployWidget.deploySuccess.criteria.noDataFound.propagate=widget
 
@@ -155,7 +155,7 @@ score.deployWidget.deploySuccess.criteria.noDataFound.propagate=widget
 # Instances online widget criteria settings
 score.deployWidget.intancesOnline.weight=50
 score.deployWidget.intancesOnline.disabled=false
-score.deployWidget.intancesOnline.criteria.noDataFound.scoreType=zero_score
+score.deployWidget.intancesOnline.criteria.noDataFound.scoreType=no_score
 score.deployWidget.intancesOnline.criteria.noDataFound.scoreValue=0
 score.deployWidget.intancesOnline.criteria.noDataFound.propagate=widget
 
@@ -163,13 +163,13 @@ score.deployWidget.intancesOnline.criteria.noDataFound.propagate=widget
 # Score settings for github scm widget
 score.scmWidget.weight=25
 score.scmWidget.disabled=false
-score.scmWidget.numberOfDays=14
+score.scmWidget.numberOfDays=7
 
-score.scmWidget.criteria.noWidgetFound.scoreType=zero_score
+score.scmWidget.criteria.noWidgetFound.scoreType=no_score
 score.scmWidget.criteria.noWidgetFound.scoreValue=0
 score.scmWidget.criteria.noWidgetFound.propagate=no
 
-score.scmWidget.criteria.noDataFound.scoreType=zero_score
+score.scmWidget.criteria.noDataFound.scoreType=no_score
 score.scmWidget.criteria.noDataFound.scoreValue=0
 score.scmWidget.criteria.noDataFound.propagate=no
 
@@ -180,7 +180,7 @@ score.scmWidget.criteria.dataRangeThresholds[0].comparator=less_or_equal
 score.scmWidget.criteria.dataRangeThresholds[0].value=20
 
 # If the threshold is met set the score
-score.scmWidget.criteria.dataRangeThresholds[0].score.scoreType=zero_score
+score.scmWidget.criteria.dataRangeThresholds[0].score.scoreType=no_score
 score.scmWidget.criteria.dataRangeThresholds[0].score.scoreValue=0
 score.scmWidget.criteria.dataRangeThresholds[0].score.propagate=no
 
@@ -190,9 +190,9 @@ score.scmWidget.criteria.dataRangeThresholds[0].numDaysToCheck=7
 
 # Commits per day widget criteria settings
 score.scmWidget.commitsPerDay.weight=100
-score.scmWidget.commitsPerDay.numberOfDays=14
+score.scmWidget.commitsPerDay.numberOfDays=7
 score.scmWidget.commitsPerDay.disabled=false
-score.scmWidget.commitsPerDay.criteria.noDataFound.scoreType=zero_score
+score.scmWidget.commitsPerDay.criteria.noDataFound.scoreType=no_score
 score.scmWidget.commitsPerDay.criteria.noDataFound.scoreValue=0
 score.scmWidget.commitsPerDay.criteria.noDataFound.propagate=widget
 
@@ -200,7 +200,7 @@ score.scmWidget.commitsPerDay.criteria.noDataFound.propagate=widget
 score.scmWidget.commitsPerDay.criteria.dataRangeThresholds[0].type=percent
 score.scmWidget.commitsPerDay.criteria.dataRangeThresholds[0].comparator=less_or_equal
 score.scmWidget.commitsPerDay.criteria.dataRangeThresholds[0].value=20
-score.scmWidget.commitsPerDay.criteria.dataRangeThresholds[0].score.scoreType=zero_score
+score.scmWidget.commitsPerDay.criteria.dataRangeThresholds[0].score.scoreType=no_score
 score.scmWidget.commitsPerDay.criteria.dataRangeThresholds[0].score.scoreValue=0
 score.scmWidget.commitsPerDay.criteria.dataRangeThresholds[0].score.propagate=widget
 score.scmWidget.commitsPerDay.criteria.dataRangeThresholds[0].numDaysToCheck=7

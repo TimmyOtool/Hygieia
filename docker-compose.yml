@@ -1,14 +1,15 @@
 # Help: rename the adject docker-compose.override.example.yml file to docker-compose.override.yml
 #       then in the override file uncomment the environment tag for the collectors you want to
 #       run. Then add the environment vars you want to use.
-version: '3'
+version: '3.7'
 services:
   db:
     image: mongo:latest
     ports:
       - "27017:27017"
     volumes:
-      - "db-data:/data/db"
+      - "/mnt/data/HygieiaData:/data/db"
+    restart: always
 
   db-setup:
     build: db
@@ -21,7 +22,10 @@ services:
     depends_on:
       - db-setup
     ports:
-      - "8080:8080"
+      - "9080:8080"
+    volumes:
+      - "/mnt/data/HygieiaLogs:/hygieia/logs"
+    restart: always
 
   api-audit:
     build: api-audit
@@ -30,6 +34,9 @@ services:
       - db-setup
     ports:
       - "8081:8080"
+    volumes:
+      - "/mnt/data/HygieiaLogs:/hygieia/logs"
+    restart: always
 
   ui:
     build: UI
@@ -38,133 +45,58 @@ services:
       - api
     ports:
       - "3000:80"
-
-  appdynamics-collector:
-    build: collectors/performance/appdynamics
-    image: hygieia-appdynamics-collector
-    depends_on:
-      - db-setup
-
-  artifactory-artifact-collector:
-    build: collectors/artifact/artifactory
-    image: hygieia-artifactory-artifact-collector
-    depends_on:
-      - db-setup
-
-  bamboo-build-collector:
-    build: collectors/build/bamboo
-    image: hygieia-bamboo-build-collector
-    depends_on:
-      - db-setup
-
-  bitbucket-collector:
-    build: collectors/scm/bitbucket
-    image: hygieia-bitbucket-scm-collector
-    depends_on:
-      - db-setup
-
-  chat-ops-collector:
-    build: collectors/misc/chat-ops
-    image: hygieia-chat-ops-collector
-    depends_on:
-      - db-setup
-
-  hpsm-cmdb-collector:
-    build: collectors/cmdb/hpsm
-    image: hygieia-hpsm-cmdb-collector
-    depends_on:
-      - db-setup
-
-  github-collector:
-    build: collectors/scm/github
-    image: hygieia-github-scm-collector
-    depends_on:
-      - db-setup
-
-  github-graphql-collector:
-    build: collectors/scm/github-graphql
-    image: hygieia-github-graphql-scm-collector
-    depends_on:
-      - db-setup
-
-  gitlab-feature-collector:
-    build: collectors/feature/gitlab
-    image: hygieia-gitlab-feature-collector
-    depends_on:
-      - db-setup
-
-  gitlab-scm-collector:
-    build: collectors/scm/gitlab
-    image: hygieia-gitlab-scm-collector
-    depends_on:
-      - db-setup
+    volumes:
+      - "/mnt/data/HygieiaLogs:/hygieia/logs"
+    restart: always
 
   jenkins-build-collector:
     build: collectors/build/jenkins
     image: hygieia-jenkins-build-collector
+    volumes:
+      - "/mnt/data/HygieiaLogs:/hygieia/logs"
     depends_on:
       - db-setup
+    restart: always
 
-  jenkins-codequality-collector:
-    build: collectors/build/jenkins-codequality
-    image: hygieia-jenkins-codequality-collector
-    depends_on:
-      - db-setup
+  #jenkins-codequality-collector:
+  #  build: collectors/build/jenkins-codequality
+  #  image: hygieia-jenkins-codequality-collector
+  #  depends_on:
+  #    - db-setup
 
-  jenkins-cucumber-test-collector:
-    build: collectors/build/jenkins-cucumber
-    image: hygieia-jenkins-cucumber-test-collector
-    depends_on:
-      - db-setup
-
-  jira-collector:
-    build: collectors/feature/jira
-    image: hygieia-jira-feature-collector
-    depends_on:
-      - db-setup
-
-  nexus-iq-collector:
-    build: collectors/library-policy/nexus-iq-collector
-    image: hygieia-nexus-iq-collector
-    depends_on:
-      - db-setup
+ # nexus-iq-collector:
+  #  build: collectors/library-policy/nexus-iq-collector
+  #  image: hygieia-nexus-iq-collector
+  #  depends_on:
+  #    - db-setup
 
   sonar-codequality-collector:
     build: collectors/build/sonar
     image: hygieia-sonar-codequality-collector
+    volumes:
+      - "/mnt/data/HygieiaLogs:/hygieia/logs"
     depends_on:
       - db-setup
+    restart: always
 
   subversion-collector:
     build: collectors/scm/subversion
     image: hygieia-subversion-scm-collector
+    volumes:
+      - "/mnt/data/HygieiaLogs:/hygieia/logs"
     depends_on:
       - db-setup
-
-  udeploy-collector:
-    build: collectors/deploy/udeploy
-    image: hygieia-udeploy-collector
-    depends_on:
-      - db-setup
-
-  versionone-collector:
-    build: collectors/feature/versionone
-    image: hygieia-versionone-collector
-    depends_on:
-      - db-setup
-
-  xldeploy-collector:
-    build: collectors/deploy/xldeploy
-    image: hygieia-xldeploy-collector
-    depends_on:
-      - db-setup
+    restart: always
 
   score-collector:
     build: collectors/misc/score
     image: hygieia-score-collector
+    volumes:
+      - "/mnt/data/HygieiaLogs:/hygieia/logs"
     depends_on:
       - db-setup
+    restart: always
 
-volumes:
-  db-data:
-  certs:
+#volumes:
+#  db-data:/mnt/data/HygieiaData
+ # certs:

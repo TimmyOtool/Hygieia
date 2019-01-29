@@ -8,6 +8,8 @@ import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.net.URI;
 import java.net.URISyntaxException;
@@ -29,6 +31,8 @@ public class HttpJenkinsClient implements JenkinsClient {
     private static final String JENKINS_JOB_BASE_URL = "%s/api/json?tree=";
     private static final String JENKINS_ARTIFACT_URL = "%s/lastSuccessfulBuild/artifact/%s";
 
+    private static final Logger LOGGER = LoggerFactory.getLogger(HttpJenkinsClient.class);
+    
     @Autowired
     public HttpJenkinsClient(RestTemplate restTemplate, JenkinsSettings settings) {
         this.restTemplate = restTemplate;
@@ -54,6 +58,7 @@ public class HttpJenkinsClient implements JenkinsClient {
             }
 
             String url = String.format(jobDepth.toString(), server);
+			LOGGER.info(url);
             final ResponseEntity<JobContainer> jobsOnServer;
             try {
                 jobsOnServer = restTemplate.exchange(new URI(url), HttpMethod.GET, createSecureRequestEntity(), JobContainer.class);

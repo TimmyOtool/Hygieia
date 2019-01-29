@@ -65,14 +65,20 @@ jenkins-codequality.apiKey=${JENKINS_API_KEY}
 jenkins-codequality.saveLog=${JENKINS_SAVE_LOG:-true}
 
 #pattern to find cucubmer reports
-jenkins-codequality.artifactRegex[0]=${JENKINS_CODEQUALITY_JSON_FILENAME:-test.xml}
+#jenkins-codequality.artifactRegex[0]=${JENKINS_CODEQUALITY_JSON_FILENAME:-test.xml}
+jenkins-codequality.artifactRegex.junit=TEST-.*\\.xml
+#jenkins-codequality.artifactRegex.findbugs=findbugsXml.xml
+#jenkins-codequality.artifactRegex.pmd=pmd.xml
+#jenkins-codequality.artifactRegex.checkstyle=checkstyle-result.xml
+jenkins-codequality.artifactRegex.jacoco=jacoco.exec
+
 
 #map the entry localhost so URLS in jenkins resolve properly
 # Docker NATs the real host localhost to 10.0.2.2 when running in docker
 # as localhost is stored in the JSON payload from jenkins we need
 # this hack to fix the addresses
 jenkins-codequality.dockerLocalHostIP=${DOCKER_LOCALHOST}
-
+jenkins-codequality.jobDepth=1
 EOF
 
 echo "

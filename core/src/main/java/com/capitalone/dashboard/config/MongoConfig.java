@@ -27,7 +27,7 @@ public class MongoConfig extends AbstractMongoConfiguration {
 
     @Value("${dbname:dashboard}")
     private String databaseName;
-    @Value("${dbhost:localhost}")
+    @Value("${dbhost:db}")
     private String host;
     @Value("${dbport:27017}")
     private int port;
